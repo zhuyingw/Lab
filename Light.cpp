@@ -61,4 +61,30 @@ void Light::updateColor(int time){
     break;
   }
 
+  int Light::getTimeRemain(int time){
+    int cur = time %cycle;
+
+    switch (currentDirection) {
+      case LightDirection::ns:
+        if (currentColor == Color::green){
+          return greenTime -1 - cur;
+        }
+        else if (currentColor == Color::yellow){
+          return yellowTime - 1 - cur;
+        }
+        else if (currentColor == Color::red){
+          return redTime -1 - cur;
+        }
+      case LightDirection::we:
+        if (currentColor == Color::green){
+          return greenTime -1 - cur;
+        }
+        else if (currentColor == Color::yellow){
+          return yellowTime - 1 - cur;
+        }
+        else if (currentColor == Color::red){
+          return redTime -1 - cur;
+        }
+  }
+    return -1;
 }

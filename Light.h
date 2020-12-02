@@ -16,7 +16,8 @@ class Light{
 
     Color getColor();
     void updateColor(int time);
-
+    int getTimeRemain(int time);
+    
   private:
     int redTime;
     int greenTime;
