@@ -22,8 +22,10 @@ int main()
     std::vector<VehicleBase*> northbound(halfSize * 2 + 2, nullptr);
 
     char dummy;
-    double random = // put random number generator here
+    double random; // put random number generator here
     
+    int totalNumVehicles = 0; 
+
     // CREATE NEW VEHICLE - NORTHBOUND
     if ( random <= prob_new_vehicle_northbound ){ // If true, create new vehicle
         if ( random <= proportion_of_cars ){
@@ -31,11 +33,11 @@ int main()
             totalNumVehicles++;
         }
         else if ( random <= proportion_of_SUVs ){
-        VehicleBase northSUV(VehicleType::SUV, Direction north); // create suv
+        VehicleBase northSUV(VehicleType::suv, Direction north); // create suv
             totalNumVehicles++;
         }
         else {
-        VehicleBase northTruck(VehicleType::Truck, Direction north); // create truck
+        VehicleBase northTruck(VehicleType::truck, Direction north); // create truck
             totalNumVehicles++;
         }
     }
@@ -47,11 +49,11 @@ int main()
             totalNumVehicles++;
         }
         else if ( random <= proportion_of_SUVs ){
-        VehicleBase southSUV(VehicleType::SUV, Direction south); // create suv
+        VehicleBase southSUV(VehicleType::suv, Direction::south); // create suv
             totalNumVehicles++;
         }
         else {
-        VehicleBase southTruck(VehicleType::Truck, Direction south); // create truck
+        VehicleBase southTruck(VehicleType::truck, Direction::south); // create truck
             totalNumVehicles++;
         }
     }
@@ -63,11 +65,11 @@ int main()
         totalNumVehicles++;
         }
         else if ( random <= proportion_of_SUVs ){
-        VehicleBase westSUV(VehicleType::SUV, Direction west); // create suv
+        VehicleBase westSUV(VehicleType::suv, Direction::west); // create suv
         totalNumVehicles++;
         }
         else {
-        VehicleBase westTruck(VehicleType::Truck, Direction west); // create truck
+        VehicleBase westTruck(VehicleType::truck, Direction::west); // create truck
         totalNumVehicles++;
         }
     }
@@ -79,22 +81,22 @@ int main()
         totalNumVehicles++;
         }
         else if ( random <= proportion_of_SUVs ){
-        VehicleBase northSUV(VehicleType::SUV, Direction east); // create suv
+        VehicleBase northSUV(VehicleType::suv, Direction::east); // create suv
         totalNumVehicles++;
         }
         else {
-        VehicleBase northTruck(VehicleType::Truck, Direction east); // create truck
+        VehicleBase northTruck(VehicleType::truck, Direction::east); // create truck
         totalNumVehicles++;
         }
     }
     
-    
+    int duration = 0;
     int i = 0; 
 
     anim.setLightNorthSouth(LightColor::green);
     anim.setLightEastWest(LightColor::red);
     
-    while ( time < maximum_simulated_time) {
+    while ( duration < maximum_simulated_time) {
     
         for (; i < green_north_south + yellow_north_south; i++) // Run for length of green + yellow
         {   
@@ -161,7 +163,7 @@ int main()
 
         } // When execution gets here, loop has ran for length of green and yellow
 
-            time = i + k;  
+            duration = i + k;  
         
     } // when execution gets here, maximum simulation time is up.
     
