@@ -32,6 +32,7 @@ class Vehicle : public VehicleBase{
 
     void advance();
 
+    //should there be a canTurn method?
     void turnRight();
 
 

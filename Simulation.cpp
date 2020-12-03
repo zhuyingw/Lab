@@ -4,7 +4,31 @@
 #include "Road.h"
 
 int main()
-{
+{   
+    int maximum_simulated_time =                1000;
+    int number_of_sections_before_intersection =  10;
+    int green_north_south=                        12;
+    int yellow_north_south=                        3;
+    int green_east_west=                          10;
+    int yellow_east_west=                          3;
+    double prob_new_vehicle_northbound=               0.25;
+    double prob_new_vehicle_southbound=               0.1;
+    double prob_new_vehicle_eastbound=                0.15;
+    double prob_new_vehicle_westbound=                0.15;
+    double proportion_of_cars=                        0.6;
+    double proportion_of_SUVs=                        0.3;
+    double proportion_of_Trucks=                      0.1;
+    double proportion_right_turn_cars=                0.4;
+    //proportion_left_turn_cars:                 0.1
+    double proportion_right_turn_SUVs=                0.3;
+    //proportion_left_turn_SUVs:                 0.05
+    double proportion_right_turn_trucks=              0.2;
+    //proportion_left_turn_trucks:               0.02
+
+    // TO ADD TO THIS FILE
+    // If vehicle is created, do probability and set bool to true if the car is turning right and then turn right.
+    // Input file!
+
     //Animator::MAX_VEHICLE_COUNT = 9999;  // vehicles will be displayed with four digits
     Animator::MAX_VEHICLE_COUNT = 999;  // vehicles will be displayed with three digits
     //Animator::MAX_VEHICLE_COUNT = 99;  // vehicles will be displayed with two digits
@@ -33,11 +57,11 @@ int main()
             totalNumVehicles++;
         }
         else if ( random <= proportion_of_SUVs ){
-        VehicleBase northSUV(VehicleType::suv, Direction north); // create suv
+        VehicleBase northSUV(VehicleType::suv, Direction:: north); // create suv
             totalNumVehicles++;
         }
         else {
-        VehicleBase northTruck(VehicleType::truck, Direction north); // create truck
+        VehicleBase northTruck(VehicleType::truck, Direction:: north); // create truck
             totalNumVehicles++;
         }
     }
@@ -92,6 +116,7 @@ int main()
     
     int duration = 0;
     int i = 0; 
+    int numVehicles = 0;
 
     anim.setLightNorthSouth(LightColor::green);
     anim.setLightEastWest(LightColor::red);
@@ -101,7 +126,7 @@ int main()
         for (; i < green_north_south + yellow_north_south; i++) // Run for length of green + yellow
         {   
             // If space ahead is avaliable, move N/S vehiles by one 
-            for ( int j = 0, j < numVehicles; j++){
+            for ( int j = 0; j < numVehicles; j++){
                 if (northbound[j].canAdvance()){
                 northbound[i+1] = northbound[i]; // example spot 1 will now hold stuff from spot 0
                 }
@@ -138,7 +163,7 @@ int main()
             for (; k < green_east_west + yellow_east_west; k++) // Run for length of green + yellow
         {   
             // If space ahead is avaliable, move W/E vehiles by one 
-            for ( int j = 0, j < numVehicles; j++){
+            for ( int j = 0; j < numVehicles; j++){
                 if (westbound[j].canAdvance()){
                 westbound[i+1] = westbound[i]; // example spot 1 will now hold stuff from spot 0
                 }
