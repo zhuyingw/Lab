@@ -1,14 +1,37 @@
 #include <iostream>
+#include <ifstream>
 #include "Animator.h"
 #include "VehicleBase.h"
 #include "Road.h"
 
-int main()
+int main(int argc, char* argv[])
 {
+    if (argc > 1){
+        string filename = argv[1];
+        ifstream input(filename);
+        input.open(filename);
+        if (input.is_open()) {
+              string line;
+              cout << "File is opened";
+              getline(input,line, ':')
+          }
+        else {
+              cout << endl << "Input error!" << endl;
+              return -1
+          }
+      }
+    else{
+        cout << endl << "Input error!" << endl;
+        return -1
+      }
+
+    //Read input:
+
+
     //Animator::MAX_VEHICLE_COUNT = 9999;  // vehicles will be displayed with four digits
     Animator::MAX_VEHICLE_COUNT = 999;  // vehicles will be displayed with three digits
     //Animator::MAX_VEHICLE_COUNT = 99;  // vehicles will be displayed with two digits
-    
+
     // Need to add code to read in inputs
 
     int halfSize = number_of_sections_before_intersection;  // number of sections before intersection
@@ -23,8 +46,8 @@ int main()
 
     char dummy;
     double random; // put random number generator here
-    
-    int totalNumVehicles = 0; 
+
+    int totalNumVehicles = 0;
 
     // CREATE NEW VEHICLE - NORTHBOUND
     if ( random <= prob_new_vehicle_northbound ){ // If true, create new vehicle
@@ -41,7 +64,7 @@ int main()
             totalNumVehicles++;
         }
     }
-    
+
     // CREATE NEW VEHICLE - SOUTHBOUND
     if ( random <= prob_new_vehicle_southbound ){ // If true, create new vehicle
         if ( random <= proportion_of_cars ){
@@ -57,7 +80,7 @@ int main()
             totalNumVehicles++;
         }
     }
-    
+
     // CREATE NEW VEHICLE - WESTBOUND
     if ( random <= prob_new_vehicle_westbound ){ // If true, create new vehicle
         if ( random <= proportion_of_cars ){
@@ -73,7 +96,7 @@ int main()
         totalNumVehicles++;
         }
     }
-    
+
     // CREATE NEW VEHICLE - EASTBOUND
     if ( random <= prob_new_vehicle_eastbound ){ // If true, create new vehicle
         if ( random <= proportion_of_cars ){
@@ -89,18 +112,18 @@ int main()
         totalNumVehicles++;
         }
     }
-    
+
     int duration = 0;
-    int i = 0; 
+    int i = 0;
 
     anim.setLightNorthSouth(LightColor::green);
     anim.setLightEastWest(LightColor::red);
-    
+
     while ( duration < maximum_simulated_time) {
-    
+
         for (; i < green_north_south + yellow_north_south; i++) // Run for length of green + yellow
-        {   
-            // If space ahead is avaliable, move N/S vehiles by one 
+        {
+            // If space ahead is avaliable, move N/S vehiles by one
             for ( int j = 0, j < numVehicles; j++){
                 if (northbound[j].canAdvance()){
                 northbound[i+1] = northbound[i]; // example spot 1 will now hold stuff from spot 0
@@ -136,8 +159,8 @@ int main()
     int k = 0;
 
             for (; k < green_east_west + yellow_east_west; k++) // Run for length of green + yellow
-        {   
-            // If space ahead is avaliable, move W/E vehiles by one 
+        {
+            // If space ahead is avaliable, move W/E vehiles by one
             for ( int j = 0, j < numVehicles; j++){
                 if (westbound[j].canAdvance()){
                 westbound[i+1] = westbound[i]; // example spot 1 will now hold stuff from spot 0
@@ -163,8 +186,9 @@ int main()
 
         } // When execution gets here, loop has ran for length of green and yellow
 
-            duration = i + k;  
-        
+            duration = i + k;
+
     } // when execution gets here, maximum simulation time is up.
-    
+
+    input.close();
 }
