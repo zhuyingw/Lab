@@ -17,9 +17,11 @@ class VehicleBase
       Direction   vehicleDirection;
 
    public:
+     VehicleBase();
       VehicleBase(VehicleType type, Direction originalDirection);
       VehicleBase(const VehicleBase& other);
       ~VehicleBase();
+      void setIDNumber(int ID);
 
       inline int getVehicleID() const { return this->vehicleID; }
 

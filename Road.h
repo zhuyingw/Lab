@@ -3,7 +3,7 @@
 
 #include "Light.h"
 #include "Vehicle.h"
-#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -20,13 +20,13 @@ class Road{
 
     bool canTurn(Vehicle* vehicle, int time, int yellowTime);
     bool canAdvance(Vehicle* vehicle, int index, int time, int yellowTime);
-    bool isFull(Vehicle* vehicle);
+    bool notFull(Vehicle* vehicle);
 
     vector<VehicleBase*> forAnimator();
-    
+
   private:
     Light* light;
     int length;
-}
+};
 
 #endif
