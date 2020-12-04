@@ -1,8 +1,9 @@
 #ifndef __VEHICLE_CPP__
 #define __VEHICLE_CPP__
 
-#inclue "Vehicle.h"
+#include "Vehicle.h"
 
+//Default constructor, default as car type and head north
 Vehicle::Vehicle(){
   vehicleType = VehicleType::car;
   size = -1;
@@ -14,6 +15,7 @@ Vehicle::Vehicle(){
   willTurnRight = false;
 }
 
+//Default destructor
 Vehicle::~Vehicle(){}
 
 Vehicle::Vehicle(const Vehicle& other) : VehicleBase(other){
@@ -25,29 +27,33 @@ Vehicle::Vehicle(const Vehicle& other) : VehicleBase(other){
   willTurnRight = other.willTurnRight;
 }
 
-Vehicle::Vehicle(VehicleType type, Direction originalDirection,
+//contructor
+Vehicle::Vehicle(VehicleType type, Direction direction,
           int head_x, int head_y, int back_x, int back_y, bool turnRight)
-          : VehicleBase(type, originalDirection){
-            if (type == Vehicle::car){
+          : VehicleBase(type, direction){
+            if (type == VehicleType::car){
               size = 2;
             }
-            else if (type == Vehicle::suv){
+            else if (type == VehicleType::suv){
               size = 3;
             }
-            else if (type == Vehicle::truck){
+            else if (type == VehicleType::truck){
               size = 4;
             }
-            else size = -1;
+            else{size = -1;}
 
             headX = head_x;
             headY = head_y;
             backX = back_x;
             backY = back_y;
+            vehicleDirection = direction;
             willTurnRight = turnRight;
 }
 
-VehicleType Vehicle::getVehicleType(){}
-Direction Vehicle::getDirection() {}
+//VehicleType Vehicle::getVehicleType(){}
+Direction Vehicle::getDirection() {
+  return vehicleDirection;
+}
 
 
 // not necessary this part
@@ -67,38 +73,13 @@ int Vehicle::getBackX(){
 int Vehicle::getBackY(){
   return backY;
 }
-// maybe
-
-vector<int> Vehicle::getHead(){
-  vector<int> headPos;
-
-  headPos.push_back(headX);
-  headPos.push_back(headY);
-}
-
-vector<int> Vehicle::getBack(){
-  vector<int> backPos;
-
-  backPos.push_back(backX);
-  backPos.push_back(backY);
-}
-
-void Vehicle::setHead(int x, int y){
-  headX = x;
-  headY = y;
-}
-
-void Vehicle::setBack(int x, int y){
-  backX = x;
-  backY = y;
-}
 
 int Vehicle::getSize() {
 
     return size;
 }
 
-bool Vehicle::turnRight() {
+bool Vehicle::turnOr() {
 
     return willTurnRight;
 }
@@ -116,7 +97,7 @@ void Vehicle::advance(){
     headX -=1;
     backX -=1;
   }
-  else if (vehicleDirection == Direction::east){
+  else{
     headX +=1;
     backX +=1;
   }

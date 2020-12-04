@@ -4,20 +4,20 @@
 #include <iostream>
 using namespace std;
 
-enum class Color {red, yellow, green}
-enum class LightDirection {ns,we}
+enum class Color {red, yellow, green};
+enum class LightDirection {ns,we};
 
 class Light{
   public:
     Light();
     ~Light();
-    Light(int redDuration, int yellowDuration, int greenDuration, Color currentLight, LightDirection way);
+    Light(int greenDuration, int yellowDuration, int redDuration, Color currentLight, LightDirection way);
     Light(const Light& other);
 
     Color getColor();
     void updateColor(int time);
     int getTimeRemain(int time);
-    
+
   private:
     int redTime;
     int greenTime;
@@ -27,8 +27,5 @@ class Light{
     LightDirection currentDirection;
 
 };
-
-
-
 
 #endif

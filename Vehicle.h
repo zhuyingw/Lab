@@ -1,7 +1,7 @@
 #ifndef __VEHICLE_H__
 #define __VEHICLE_H__
 
-#inclue <vector>
+#include <vector>
 #include "VehicleBase.h"
 
 using namespace std;
@@ -11,28 +11,24 @@ class Vehicle : public VehicleBase{
     Vehicle();
     ~Vehicle();
     Vehicle(const Vehicle& other);
-    Vehicle(VehicleType type, Direction originalDirection,
+    Vehicle(VehicleType type, Direction direction,
             int head_x, int head_y, int back_x, int back_y, bool turnRight);
 
-    VehicleType getVehicleType();
-    Direction   getVehicleOriginalDirection();
+    //VehicleType getVehicleType();
+    Direction   getDirection();
 
     int getHeadX();
     int getHeadY();
-    vector<int> getHead();
 
     int getBackX();
     int getBackY();
-    vector<int> getBack();
-
-    void setHead(int x, int y);
-    void setBack(int x, int y);
 
     int getSize();
 
     void advance();
 
     void turnRight();
+    bool turnOr();
 
 
   private:
@@ -44,6 +40,6 @@ class Vehicle : public VehicleBase{
      int backY;
      Direction   vehicleDirection;
      bool willTurnRight;
-}
+};
 
 #endif

@@ -5,8 +5,10 @@
 
 int VehicleBase::vehicleCount = 0;
 
+VehicleBase::VehicleBase(){}
+
 VehicleBase::VehicleBase(VehicleType type, Direction direction)
-    : vehicleID(VehicleBase::vehicleCount++), 
+    : vehicleID(VehicleBase::vehicleCount++),
       vehicleType(type),
       vehicleDirection(direction)
 {}
@@ -18,5 +20,9 @@ VehicleBase::VehicleBase(const VehicleBase& other)
 {}
 
 VehicleBase::~VehicleBase() {}
+
+void VehicleBase::setIDNumber(int ID){
+  vehicleID = ID;
+}
 
 #endif
