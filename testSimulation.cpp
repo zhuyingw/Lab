@@ -28,7 +28,8 @@ int main(int argc, char* argv[]){
   }
   else{
   // set up inital seed
-  int initialSeed = 8675309;
+  int initialSeed = atoi(argv[2]); // convert seed from char* to int and save as seed
+  //int initialSeed = 8675309;
 
 
   //varibale initialization
